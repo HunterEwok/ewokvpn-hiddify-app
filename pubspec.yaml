@@ -156,8 +156,6 @@ flutter:
     - assets/images/tray_icon_connected.png
     - assets/images/tray_icon_disconnected.ico
     - assets/images/tray_icon_disconnected.png
-    - assets/images/connect_norouz.PNG
-    - assets/images/disconnect_norouz.PNG
     - assets/images/world_map.png
     - assets/images/source/ic_launcher_border.png
 
@@ -178,12 +176,16 @@ flutter_gen:
     flutter_svg: true
 
 flutter_native_splash:
-  color: "#ffffff"
+  color: "#F3E9D2"
   image: assets/images/source/ic_launcher_splash.png
   android_gravity: center
+  color_dark: "#0A1230"
+  image_dark: assets/images/source/ic_launcher_splash.png
   android_12:
-    color: "#ffffff"
+    color: "#F3E9D2"
     image: assets/images/source/ic_launcher_foreground.png
+    color_dark: "#0A1230"
+    image_dark: assets/images/source/ic_launcher_foreground.png
 
 ffigen:
   name: "HiddifyCoreNativeLibrary"

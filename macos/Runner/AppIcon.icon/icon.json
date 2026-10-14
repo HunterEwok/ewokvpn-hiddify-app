@@ -1,26 +1,36 @@
 {
   "fill" : {
-    "solid" : "srgb:1.00000,1.00000,1.00000,1.00000"
+    "solid" : "srgb:0.95294,0.91373,0.82353,1.00000"
   },
+  "fill-specializations" : [
+    {
+      "appearance" : "dark",
+      "value" : {
+        "solid" : "srgb:0.03922,0.07059,0.18824,1.00000"
+      }
+    }
+  ],
   "groups" : [
     {
       "blend-mode" : "normal",
-      "blur-material" : 0.5,
       "hidden" : false,
       "layers" : [
         {
           "blend-mode" : "normal",
-          "fill" : {
-            "solid" : "display-p3:0.29348,0.36978,0.88111,1.00000"
-          },
-          "glass" : true,
-          "image-name" : "logo.svg",
-          "name" : "logo",
+          "glass" : false,
+          "image-name" : "ewokvpn_day.png",
+          "image-name-specializations" : [
+            {
+              "appearance" : "dark",
+              "value" : "ewokvpn_night.png"
+            }
+          ],
+          "name" : "ewokvpn",
           "position" : {
-            "scale" : 10,
+            "scale" : 1,
             "translation-in-points" : [
               0,
-              -14
+              0
             ]
           }
         }
@@ -34,13 +44,13 @@
         ]
       },
       "shadow" : {
-        "kind" : "layer-color",
-        "opacity" : 0.8
+        "kind" : "none",
+        "opacity" : 0
       },
-      "specular" : true,
+      "specular" : false,
       "translucency" : {
-        "enabled" : true,
-        "value" : 0.05
+        "enabled" : false,
+        "value" : 0
       }
     }
   ],
