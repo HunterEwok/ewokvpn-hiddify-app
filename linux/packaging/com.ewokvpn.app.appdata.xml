@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Hiddify AppStream Metadata
+  EwokVPN AppStream Metadata
   Place this file at: linux/packaging/myappid.appdata.xml
 -->
 <component type="desktop-application">
-  <id>app.hiddify.com</id>
+  <id>com.ewokvpn.app</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-or-later</project_license>
 
-  <name>Hiddify</name>
+  <name>EwokVPN</name>
   <summary>Modern Proxy and VPN Manager for Linux</summary>
 
-  <developer_name>Hiddify</developer_name>
-  <update_contact>linux@hiddify.com</update_contact>
+  <developer_name>EwokVPN</developer_name>
 
   <description>
     <p>
-      Hiddify is an advanced proxy and VPN client built for privacy and control. 
+      EwokVPN is an advanced proxy and VPN client built for privacy and control. 
       It supports multiple backend protocols including V2Ray, Xray, Clash, and Sing-box, 
       providing flexibility and performance for all kinds of network configurations.
     </p>
     <p>
-      Designed with simplicity in mind, Hiddify helps users connect securely and 
+      Designed with simplicity in mind, EwokVPN helps users connect securely and 
       manage complex proxy configurations through a clean graphical interface.
+    </p>
+    <p>
+      EwokVPN is based on Hiddify (https://github.com/hiddify/hiddify-app).
     </p>
   </description>
 
-  <screenshots>
-    <screenshot type="default">
-      <image>https://hiddify.com/assets/hiddify-next-mobile.svg</image>
-      <caption>Main Interface of Hiddify</caption>
-    </screenshot>
-  </screenshots>
+  <launchable type="desktop-id">ewokvpn.desktop</launchable>
 
-  <launchable type="desktop-id">hiddify.desktop</launchable>
-
-  <icon type="stock">hiddify</icon>
+  <icon type="stock">ewokvpn</icon>
 
   <categories>
     <category>Network</category>
   </categories>
 
   <keywords>
-    <keyword>Hiddify</keyword>
+    <keyword>EwokVPN</keyword>
     <keyword>Proxy</keyword>
     <keyword>VPN</keyword>
     <keyword>V2Ray</keyword>
@@ -62,26 +57,25 @@
     <mime-type>x-scheme-handler/sing-box</mime-type>
   </mime-types>
 
-  <url type="homepage">https://hiddify.com</url>
-  <url type="bugtracker">https://github.com/hiddify/hiddify-app/issues</url>
-  <url type="help">https://docs.hiddify.com</url>
+  <url type="homepage">https://github.com/HunterEwok/ewokvpn-hiddify-app</url>
+  <url type="bugtracker">https://github.com/HunterEwok/ewokvpn-hiddify-app/issues</url>
 
   <provides>
-    <binary>hiddify</binary>
+    <binary>ewokvpn</binary>
   </provides>
 
   <releases>
     <release version="1.0.0" date="2025-10-25">
       <description>
-        <p>Initial Linux release of Hiddify with multi-protocol support and modern UI.</p>
+        <p>Initial Linux release of EwokVPN with multi-protocol support and modern UI.</p>
       </description>
     </release>
   </releases>
 
-  <translation type="gettext">hiddify</translation>
+  <translation type="gettext">ewokvpn</translation>
 
   <custom>
-    <value key="PackageName">hiddify</value>
+    <value key="PackageName">ewokvpn</value>
     <value key="Priority">optional</value>
     <value key="Section">x11</value>
     <value key="InstalledSize">6604</value>

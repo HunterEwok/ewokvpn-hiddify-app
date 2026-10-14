@@ -1,7 +1,10 @@
 name: Publish to WinGet
+# Publishes under Hiddify's WinGet identifiers. Kept manual-only until EwokVPN
+# has its own WinGet package and WINGET_TOKEN secret.
 on:
-  release:
-    types: [released]
+  workflow_dispatch:
+  # release:
+  #   types: [released]
 
 env:
     IDENTIFIER: ${{ endsWith(github.event.release.tag_name, 'dev') && 'Hiddify.Next.Beta' || 'Hiddify.Next' }}

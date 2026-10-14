@@ -1,5 +1,8 @@
 name: CI
+# Automatic builds are off until the first EwokVPN release; run this workflow
+# manually from the Actions tab. To turn them back on, restore the push trigger.
 on:
+  workflow_dispatch:
   # pull_request:
   #   paths-ignore:
   #     - '**.md'
@@ -7,17 +10,15 @@ on:
   #     - 'test.configs/**'
   #     - '.vscode/'
   #     - 'appcast.xml'
-  push:
-    branches:
-       - main
-       - dev
-       - android-fix-action-bug
-       - new-design-v2 
-    paths-ignore:
-      - '**.md'
-      - 'docs/**'
-      - '.vscode/'
-      - 'appcast.xml'
+  # push:
+  #   branches:
+  #      - main
+  #      - dev
+  #   paths-ignore:
+  #     - '**.md'
+  #     - 'docs/**'
+  #     - '.vscode/'
+  #     - 'appcast.xml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -30,5 +31,5 @@ jobs:
     permissions: write-all
     if: "${{!contains(github.event.head_commit.message, 'release: version')}}"
     with:
-      upload-artifact: ${{ github.event_name == 'push' }}
+      upload-artifact: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
       

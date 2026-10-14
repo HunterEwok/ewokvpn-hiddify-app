@@ -3,9 +3,11 @@ name: Upload store MSIX to release
 permissions:
   contents: write
 
+# store-id below is Hiddify's Microsoft Store listing. Kept manual-only until
+# EwokVPN has its own Store listing.
 on:
-  release:
-    types: [released]   # Run the action when a GitHub release is published
+  # release:
+  #   types: [released]   # Run the action when a GitHub release is published
 
   # schedule:
   #   - cron:  '0 */6 * * *'  # Run the action every 6 hours
@@ -22,4 +24,4 @@ jobs:
       with:
         store-id: 9pdfnl3qv2s5
         token: ${{ secrets.GITHUB_TOKEN }}
-        asset-name-pattern: Hiddify-Windows-Setup-x64		# Optional
+        asset-name-pattern: EwokVPN-Windows-Setup-x64  # Optional
