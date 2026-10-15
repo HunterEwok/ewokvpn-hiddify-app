@@ -8,17 +8,16 @@
 # - Successful builds do not guarantee runtime stability on Red Hat-based systems.
 
 
-# display_name: Hiddify
-# url: https://github.com/hiddify/hiddify-app
+# display_name: EwokVPN
+# url: https://github.com/HunterEwok/ewokvpn-hiddify-app
 # license: Other
 
-# packager: hiddify
-# packagerEmail: linux@hiddify.com
+# packager: EwokVPN
 
 # icon: assets/images/source/ic_launcher_border.png
 
 # keywords:
-#   - Hiddify
+#   - EwokVPN
 #   - Proxy
 #   - VPN
 #   - V2ray
@@ -27,7 +26,7 @@
 #   - Psiphon
 #   - OpenVPN
 
-# generic_name: Hiddify
+# generic_name: EwokVPN
 
 # requires:
 #   - libayatana-appindicator-gtk3

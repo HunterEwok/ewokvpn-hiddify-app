@@ -19,18 +19,18 @@ env:
   NDK_VERSION: r28c
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-  TARGET_NAME_gz: "Hiddify-Linux-x64-AppImage.tar"
-  TARGET_NAME_AppImage: "Hiddify-Linux-x64-AppImage"
-  TARGET_NAME_deb: "Hiddify-Debian-x64"
-  # TARGET_NAME_rpm: "Hiddify-rpm-x64"
-  TARGET_NAME_apk: "Hiddify-Android"
-  TARGET_NAME_aab: "Hiddify-Android"
-  TARGET_NAME_exe: "Hiddify-Windows-Setup-x64"
-  TARGET_NAME_msix: "Hiddify-Windows-x64"
-  TARGET_NAME_zip: "Hiddify-Windows-Portable-x64"
-  TARGET_NAME_dmg: "Hiddify-MacOS"
-  TARGET_NAME_pkg: "Hiddify-MacOS-Installer"
-  TARGET_NAME_ipa: "Hiddify-iOS"
+  TARGET_NAME_gz: "EwokVPN-Linux-x64-AppImage.tar"
+  TARGET_NAME_AppImage: "EwokVPN-Linux-x64-AppImage"
+  TARGET_NAME_deb: "EwokVPN-Debian-x64"
+  # TARGET_NAME_rpm: "EwokVPN-rpm-x64"
+  TARGET_NAME_apk: "EwokVPN-Android"
+  TARGET_NAME_aab: "EwokVPN-Android"
+  TARGET_NAME_exe: "EwokVPN-Windows-Setup-x64"
+  TARGET_NAME_msix: "EwokVPN-Windows-x64"
+  TARGET_NAME_zip: "EwokVPN-Windows-Portable-x64"
+  TARGET_NAME_dmg: "EwokVPN-MacOS"
+  TARGET_NAME_pkg: "EwokVPN-MacOS-Installer"
+  TARGET_NAME_ipa: "EwokVPN-iOS"
   
 
 jobs:
@@ -280,7 +280,7 @@ jobs:
             Write-Host "Signing $($file.FullName)"
             $ok = $false
             foreach ($attempt in 1..5) {
-              & $signtool.FullName sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com /d Hiddify /f $pfx /p $env:SIGN_PASSWORD $file.FullName
+              & $signtool.FullName sign /fd SHA256 /td SHA256 /tr http://timestamp.digicert.com /d EwokVPN /f $pfx /p $env:SIGN_PASSWORD $file.FullName
               if ($LASTEXITCODE -eq 0) { $ok = $true; break }
               Start-Sleep -Seconds $attempt
             }
@@ -337,7 +337,7 @@ jobs:
         run: |
           mkdir out
           ls -R ./build/app/outputs
-          cp ./build/app/outputs/bundle/release/app-release.aab out/hiddify-android-market.aab || echo "no aab"
+          cp ./build/app/outputs/bundle/release/app-release.aab out/ewokvpn-android-market.aab || echo "no aab"
 
       - name: Copy to out unix
         if: startsWith(matrix.platform,'linux') || matrix.platform == 'macos' || matrix.platform == 'ios'
@@ -421,7 +421,7 @@ jobs:
           set +e 
           sed 's|RELEASE_TAG|${{ env.TAG_NAME }}|g' ./.github/release_message.md > release.md
           pip install gitchangelog pystache mustache markdown
-          prelease=$(curl --silent "https://api.github.com/repos/hiddify/hiddify-app/releases/latest" | grep -Po '"tag_name": "\K([^"]*)') 
+          prelease=$(curl --silent "https://api.github.com/repos/${{ github.repository }}/releases/latest" | grep -Po '"tag_name": "\K([^"]*)') 
           echo -e "\n\n<details markdown=1><summary>All changes from $current to the latest commit:</summary>\n\n">>release.md
           gitchangelog "${prelease}.." >> release.md  2>&1 || echo "Error in gitchangelog"
           echo -e "\n\n</details>">>release.md
@@ -474,7 +474,7 @@ jobs:
           ls -R ./out
           ls -R ./.github/
           ls -R ./.git/
-          mv out/hiddify-android-market.aab  hiddify-android-market.aab
+          mv out/ewokvpn-android-market.aab  ewokvpn-android-market.aab || echo "no aab"
 
       - name: prepare_release_message
         run: |
@@ -499,9 +499,9 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJson: service_account.json
-          packageName: app.hiddify.com
+          packageName: com.ewokvpn.app
           releaseName: ${{ env.TAG_NAME }}
-          releaseFiles: ./hiddify-android-market.aab
+          releaseFiles: ./ewokvpn-android-market.aab
           track: 'beta'
 
 
@@ -547,7 +547,7 @@ jobs:
 
       - uses: Apple-Actions/upload-testflight-build@v4
         with:
-          app-path: 'out/Hiddify-iOS.ipa' 
+          app-path: 'out/EwokVPN-iOS.ipa' 
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}

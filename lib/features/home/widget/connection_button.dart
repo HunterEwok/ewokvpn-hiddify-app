@@ -29,7 +29,6 @@ class ConnectionButton extends HookConsumerWidget {
 
     final requiresReconnect = ref.watch(configOptionNotifierProvider).valueOrNull;
     final hotReloading = ref.watch(hotReloadingProvider).valueOrNull ?? false;
-    final today = DateTime.now();
     // final animationController = useAnimationController(
     //   duration: const Duration(seconds: 1),
     // )..repeat(reverse: true); // Ensure the animation loops indefinitely
@@ -160,12 +159,6 @@ class ConnectionButton extends HookConsumerWidget {
         AsyncData(value: _) => buttonTheme.idleColor!,
         _ => Colors.red,
       },
-      image: switch (connectionStatus) {
-        AsyncData(value: Connected()) when requiresReconnect == true => Assets.images.disconnectNorouz,
-        AsyncData(value: Connected()) => Assets.images.connectNorouz,
-        AsyncData(value: _) => Assets.images.disconnectNorouz,
-        _ => Assets.images.disconnectNorouz,
-      },
       newButtonColor: switch (connectionStatus) {
         AsyncData(value: Connected()) when hotReloading => const Color.fromARGB(255, 185, 176, 103),
         AsyncData(value: Connected()) when requiresReconnect == true => Colors.teal,
@@ -182,7 +175,6 @@ class ConnectionButton extends HookConsumerWidget {
         AsyncData(value: _) => true,
         _ => false,
       },
-      useImage: today.day >= 19 && today.day <= 23 && today.month == 3,
       secureLabel: secureLabel,
     );
   }
@@ -194,8 +186,6 @@ class _ConnectionButton extends StatelessWidget {
     required this.enabled,
     required this.label,
     required this.buttonColor,
-    required this.image,
-    required this.useImage,
     required this.newButtonColor,
     required this.animated,
     required this.secureLabel,
@@ -205,8 +195,6 @@ class _ConnectionButton extends StatelessWidget {
   final bool enabled;
   final String label;
   final Color buttonColor;
-  final AssetGenImage image;
-  final bool useImage;
   final String secureLabel;
 
   final Color newButtonColor;
@@ -244,11 +232,7 @@ class _ConnectionButton extends StatelessWidget {
                     tween: ColorTween(end: buttonColor),
                     duration: const Duration(milliseconds: 250),
                     builder: (context, value, child) {
-                      if (useImage) {
-                        return image.image();
-                      } else {
-                        return Assets.images.logo.svg(colorFilter: ColorFilter.mode(value!, BlendMode.srcIn));
-                      }
+                      return Assets.images.logo.svg(colorFilter: ColorFilter.mode(value!, BlendMode.srcIn));
                     },
                   ),
                 ),
